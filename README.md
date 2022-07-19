@@ -10,4 +10,15 @@ Sistema desenvolvido com a finalidade de ser utilizado para enquetes, você pode
 - JavaScript
 
 ### Instruções 
+```
+# Clone o repositório
+git clone https://github.com/thomaztorres/sistema-vottation
 
+# Entre no diretório
+cd sistema-vottation
+
+# Inicie o Servidor
+php artisan serve
+```
+&nbsp;
+Developed with 💙 by Thomaz Torres
