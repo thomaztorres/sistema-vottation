@@ -1,6 +1,6 @@
-### Sistema Vottation
+## Sistema Vottation
 
-## Sistema de votação desenvolvido utilziando: 
+### Sistema de votação desenvolvido utilziando: 
 - HTML5
 - CSS3
 - LARAVEL9
