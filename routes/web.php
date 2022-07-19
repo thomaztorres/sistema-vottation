@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EnqueteController;
+use App\Http\Controllers\VotationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('enquetes', EnqueteController::class);
+
+Route::resource('votation', VotationController::class);
+
 Route::get('/', function () {
-    return redirect('/home');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
-
-Route::get('/votation', function () {
-    return view('votation');
+    return redirect('/enquetes');
 });

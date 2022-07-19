@@ -1,68 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style-config.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/votation.css') }}">
-    <title>Vottation</title>
-</head>
-    <body>
-        <header>
-                <div class="header-items">
-                    <div class="logo">
-                        <h1><a href="/home">Vottation</a></h1>
-                    </div>
-                    <div class="links">
-                        <ul class="links-list">
-                            <li id="active"><a href="/home">Enquetes</a></li>
-                            <li><a href="#abrirModal">Nova Enquete</a></li>
-                        </ul>
-                    </div>
-                </div>
-        </header>
-        <div class="new-survey">
-            <a href="#abrirModal">
-                <img src="{{ URL::asset('img/icons/new.svg') }}" alt="Nova Enquete">
-            </a>       
-        </div>
-    </body>
+@extends('app')
+@section('content')
     <main>
         <div class="box">
             <div class="box-content">
-                <form action="" method="post">
+                <form action="{{ route('votation.update', 0)}}" method="POST">
+                    @method('PUT')
+                    @csrf
                     <div class="box-header">
-                        <h1>Lula x Bolsonaro</h1>
-                        <p>11/07/22 - 31/07/22</p>
+                        @foreach ($enquetes as $enquete)
+                            <h1>{{ $enquete->nome }}</h1>
+                            <p>{{ date('d/m/Y H:i', strtotime($enquete->data_inicio)) }} - {{ date('d/m/Y H:i', strtotime($enquete->data_final)) }}</p>
+                        @endforeach
                     </div>
                     <div class="box-body">
-                        <div class="radio-section">
-                            <input type="radio" name="first" id="first-radio">
-                            <label for="first">Lorem ipsum dolor sit amet consectetur adipisicing elit.</label>
-                            <input type="radio" name="second" id="second-radio">
-                            <label for="second">Lorem ipsum dolor sit amet consectetur adipisicing elit.</label>
-                            <input type="radio" name="third" id="third-radio">
-                            <label for="third">Lorem ipsum dolor sit amet consectetur adipisicing elit.</label>
-                        </div>
                         <table>
                             <tr>
+                                <th></th>
                                 <th>Votos</th>
                             </tr>
-                            <td>3</td>
-                            <td>3</td>
-                            <td>3</td>
+                            @foreach ($alternativas as $alternativa)
+                                <tr>
+                                    <td class="alternatives">
+                                        @foreach ($enquetes as $enquete)
+                                            @if ($enquete->type == 'closed' || $enquete->type == 'future')
+                                                <input disabled type="radio" style="cursor: default;" id="first" value="{{ $alternativa->id }}" name="alternativa">
+                                                <label for="first">{{ $alternativa->descricao }}</label>
+                                            @else 
+                                                <input type="radio" class="radio-inputs" id="radio-input" value="{{ $alternativa->id }}" name="alternativa">
+                                                <label for="radio-input">{{ $alternativa->descricao }}</label>
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td class="votes-number">{{ $alternativa->votos }}</td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
                     <div class="box-footer">
-                        <h3>Votos totais: 12</h3>
-                        <input type="submit" value="Votar">
+                        <div class="button-back">
+                            <a href="{{route('enquetes.index')}}"><img src="{{ URL::asset('img/icons/arrow-back.svg') }}" alt="Voltar"></a>
+                        </div>
+                        @foreach ($enquetes as $enquete)
+                            @if ($enquete->type == 'closed')
+                                <input disabled type="submit" style="background-color: #551111; cursor:default;" value="Enquete Fechada">
+                            @elseif ($enquete->type == 'future')
+                                <input disabled type="submit" style="background-color: #111155; cursor:default;" value="Abrirá em {{ date('d/m/Y H:i', strtotime($enquete->data_inicio)) }}">
+                            @else
+                                <input type="submit" value="Votar">
+                            @endif
+                        @endforeach
                     </div>
                 </form>
             </div>
         </div>
+        @include('modals/create')
     </main>
-</html>
+@endsection

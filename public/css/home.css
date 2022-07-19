@@ -38,6 +38,7 @@ main {
 }
 
 .card {
+    min-width: 140px;
     padding: 1rem;
     background-color: #fff;
     border-radius: 15px;
@@ -49,6 +50,17 @@ main {
 .card:hover {
     box-shadow: 10px 10px 10px #a0a0a0;
     transform: translateY(-10px);
+}
+
+.card .form-delete button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.card .form-delete button img {
+    height: 30px;
+    width: 1rem;
 }
 
 .card h3 a {
@@ -63,9 +75,9 @@ main {
 .card .card-votes-edit {
     display: flex;
     flex-direction: row;
+    justify-content: end;
     margin-top: 2rem;
     width: 100%;
-    justify-content: space-between;
 }
 
 .card-votes-edit img {
@@ -75,6 +87,10 @@ main {
 
 /* ----MODAL---- */
 
+.modal {
+    scroll-behavior: auto;
+}
+
 .modal,
 .modal-box {
     display: flex;
@@ -83,6 +99,7 @@ main {
 }
 
 .modal {
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -90,18 +107,10 @@ main {
     left: 0;
     background: rgba(0,0,0,0.8);
     z-index: 99999;
-    opacity:0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
     color: #562261;
 }
 
-.modal:target {
-    opacity: 1;
-    pointer-events: auto;
-}
+
 
 .modal-box {
     width: 85vw;
@@ -118,6 +127,10 @@ main {
 
 .modal-close {
     text-align: end;
+}
+
+.modal-close a {
+    cursor: pointer;
 }
 
 .modal-close img {
@@ -149,9 +162,14 @@ main {
 }
 
 .new-alternative {
+    display: flex;
+    justify-content: end;
+}
+
+.new-alternative p {
     font-size: .8rem;
-    text-align: end;
     cursor: pointer;
+    width: fit-content;
 }
 
 .input-dates .input-date {
@@ -161,6 +179,7 @@ main {
     background-color: #d0d0d0;
     border-radius: 20px;
     padding: 5px;
+    margin-bottom: .5rem;
 }
 
 .input label {
@@ -184,13 +203,53 @@ main {
     cursor: pointer;
 }
 
+
+.new-survey {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 9999;
+    bottom: 35px;
+    right: 35px;
+    background-color: #972AAD;
+    border-radius: 50%;
+}
+
+.new-survey img {
+    height: 25px;
+    width: 25px;
+}
+
 @media (min-width: 750px) and (max-width: 1200px) {
+    .new-survey {
+        display: none;
+    }
+
+    .card-section { 
+        grid-template-columns: 200px 200px 200px 200px 200px;
+    } 
+
     .modal-box {
         max-width: 500px;
     }
 }
 
 @media (min-width: 1200px) {
+    .new-survey {
+        display: none;
+    }
+
+    .card-section { 
+        grid-template-columns: 200px 200px 200px 200px 200px;
+    } 
+
+    .card-section {
+        overflow-x: hidden;
+    }
+    
     .modal-box {
         max-width: 500px;
     }
