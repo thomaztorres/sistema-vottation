@@ -8,6 +8,7 @@ Sistema desenvolvido com a finalidade de ser utilizado para enquetes, você pode
 - LARAVEL9
 - PHP 8
 - JavaScript
-- 
+- Ajax
+
 &nbsp;
 Developed with 💙 by Thomaz Torres
