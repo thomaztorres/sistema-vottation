@@ -1,6 +1,7 @@
 ## Sistema Vottation
 
-Sistema desenvolvido com a finalidade de ser utilizado para enquetes, você pode criar, editar e deletar enquetes, com contagem de votos em realtime.
+Sistema desenvolvido com a finalidade de ser utilizado para votações. 
+Nele você pode criar, editar e deletar enquetes, com data de início e fim, e contagem de votos em realtime.
 
 ### Sistema desenvolvido utilizando: 
 - HTML5
