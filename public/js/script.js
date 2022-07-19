@@ -3,7 +3,7 @@ function selectDateInitial() {
     let input_initial = document.querySelector('[name="data_inicio"]');
     let input_final = document.querySelector('[name="data_final"]');
 
-    input_final.setAttribute('min',input_initial.value)
+    input_final.setAttribute('min',input_initial.value);
 }
 
 function openModal (elementName) {
@@ -18,13 +18,13 @@ function closeModal (elementName) {
     modal.style.display = 'none';
 }
 
-function openModalUpdate (elementName, id) {
+function openModalWithId (elementName, id) {
     let modal = document.getElementById(elementName+'-'+id);
 
     modal.style.display = 'flex';
 }
 
-function closeModalUpdate (elementName, id) {
+function closeModalWithId (elementName, id) {
     let modal = document.getElementById(elementName+'-'+id);
 
     modal.style.display = 'none';

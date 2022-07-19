@@ -27,18 +27,20 @@ class VotationController extends Controller
         return view('votation', compact('enquetes', 'alternativas'));
     }
 
+    public function getVotes($id) {
+        $alternativa = Alternativa::find($id);
+
+        return $alternativa->votos;        
+    }
+
     public function update(Request $request) {
 
-        $votos = Alternativa::select('votos')->where('id', $request->alternativa)->get();
+        $voto = Alternativa::select('votos')->where('id', $request->alternativa)->first();
 
-        foreach ($votos as $voto) {
-            $voto_atual = $voto->votos;
-        }
-
-        $voto_total = $voto_atual + 1;
+        $voto_total = $voto->votos + 1;
 
         Alternativa::where('id', $request->alternativa)->update(['votos' => $voto_total]);
 
-        return redirect('enquetes')->with('success', 'Voto computado com sucesso!');
+        return redirect('enquetes');
     }
 }

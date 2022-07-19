@@ -53,7 +53,7 @@ class EnqueteController extends Controller
             $a++;
         }
 
-        return redirect()->route('enquetes.index')->with('success', 'Enquete criada com sucesso!');
+        return redirect()->route('enquetes.index');
     }
 
     public function edit() 
@@ -76,13 +76,13 @@ class EnqueteController extends Controller
             $i++;
         }
 
-        return redirect()->route('enquetes.index')->with('success', 'Enquete atualizada com sucesso!');
+        return redirect()->route('enquetes.index');
     }
 
     public function destroy(Enquete $enquete)
     {
       $enquete->delete();
 
-       return redirect()->route('enquetes.index')->with('success', 'Enquete deletada com sucesso!');
+       return redirect()->route('enquetes.index');
     }
 }

@@ -59,6 +59,16 @@ table {
     cursor: pointer;
 }
 
+.box-footer #input-closed {
+    background-color: #551111;
+    cursor:default;
+}
+
+.box-footer #input-future {
+    background-color: #111155; 
+    cursor:default;
+}
+
 .button-back {
     display: flex;
     align-items: center;

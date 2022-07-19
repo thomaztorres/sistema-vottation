@@ -19,6 +19,8 @@ Route::resource('enquetes', EnqueteController::class);
 
 Route::resource('votation', VotationController::class);
 
+Route::get('/get-votes/{id}', [VotationController::class, 'getVotes'])->name('getVotes');
+
 Route::get('/', function () {
     return redirect('/enquetes');
 });

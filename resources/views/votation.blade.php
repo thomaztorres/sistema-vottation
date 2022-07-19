@@ -28,10 +28,12 @@
                                             @else 
                                                 <input type="radio" class="radio-inputs" id="radio-input" value="{{ $alternativa->id }}" name="alternativa">
                                                 <label for="radio-input">{{ $alternativa->descricao }}</label>
+                                                <input id="input-alter-values" type="number" value="{{ count($alternativas) }}" style="display: none;">
+                                                <a id="{{ $alternativa->id }}" href="javascript:void(0)" data-id="{{ $alternativa->id }}"></a>
                                             @endif
                                         @endforeach
                                     </td>
-                                    <td class="votes-number">{{ $alternativa->votos }}</td>
+                                    <td id="vote{{$alternativa->id}}" data-id="{{ $alternativa->id }}" class="votes-number">{{ $alternativa->votos }}</td>
                                 </tr>
                             @endforeach
                         </table>
@@ -41,10 +43,10 @@
                             <a href="{{route('enquetes.index')}}"><img src="{{ URL::asset('img/icons/arrow-back.svg') }}" alt="Voltar"></a>
                         </div>
                         @foreach ($enquetes as $enquete)
-                            @if ($enquete->type == 'closed')
-                                <input disabled type="submit" style="background-color: #551111; cursor:default;" value="Enquete Fechada">
+                            @if ($enquete->type == 'closed') 
+                                <input id="input-closed" disabled type="submit" class="closed" value="Enquete Fechada">
                             @elseif ($enquete->type == 'future')
-                                <input disabled type="submit" style="background-color: #111155; cursor:default;" value="Abrirá em {{ date('d/m/Y H:i', strtotime($enquete->data_inicio)) }}">
+                                <input id="input-future" disabled type="submit" class="future" value="Abrirá em {{ date('d/m/Y H:i', strtotime($enquete->data_inicio)) }}">
                             @else
                                 <input type="submit" value="Votar">
                             @endif
@@ -55,4 +57,5 @@
         </div>
         @include('modals/create')
     </main>
+    <script src="{{ asset('./js/getVotes.js') }}"></script>
 @endsection

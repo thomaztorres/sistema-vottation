@@ -5,7 +5,7 @@
                 @method('PUT')
                 @csrf
                 <div class="modal-close">
-                    <a onclick="closeModalUpdate('modal-atualizar', {{$enquete->id}})">
+                    <a onclick="closeModalWithId('modal-atualizar', {{$enquete->id}})">
                         <img src="{{ asset('img/icons/x.svg') }}" alt="Fechar">
                     </a>       
                 </div>

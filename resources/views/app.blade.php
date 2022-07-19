@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="{{ asset('css/style-config.css') }}">
         <link rel="stylesheet" href="{{ asset('css/home.css') }}">
         <link rel="stylesheet" href="{{ asset('css/votation.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{{ asset('./js/jquery-3.6.0.js') }}"></script>
         <title>Vottation</title>
     </head>
     <body>
@@ -28,10 +30,10 @@
         </header>
         <main>
             @yield('content')
-            <script type="text/javascript" src="{{ asset('./js/script.js') }}"></script>
         </main>
         <footer>
             &copy; Dev. Thomaz Torres
         </footer>
+        <script type="text/javascript" src="{{ asset('./js/script.js') }}"></script>
     </body>
 </html>
